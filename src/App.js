@@ -1,6 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import Header from './components/Header';
+import Main from './components/Main';
+import PostDetails from './components/PostDetails';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
 import './App.css';
+
+
+
 
 function App() {
 
@@ -9,22 +17,17 @@ function App() {
   .then(data => console.log(data));
 
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/thread" exact component={PostDetails} />
+        <Route component={NotFound} />
+      </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 
