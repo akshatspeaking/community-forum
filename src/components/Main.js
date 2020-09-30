@@ -19,7 +19,7 @@ export default class Main extends Component {
           <div className="">
             <div className="list mx-auto max-w-lg">
               {this.props.questions.map((post) => (
-                <Postcard key={post._id} {...post} />
+                <Postcard key={post.id} {...post} />
               ))}
             </div>
           </div>

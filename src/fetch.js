@@ -1,7 +1,12 @@
 function get(url) {
-  return fetch(
-    "https://community-forum-api.herokuapp.com/api/" + url
-  ).then((res) => res.json());
+  return fetch("https://community-forum-api.herokuapp.com/api/" + url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token") || "",
+    },
+    mode: "cors",
+  }).then((res) => res.json());
 }
 
 function post(url, data) {
