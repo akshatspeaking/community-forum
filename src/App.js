@@ -33,9 +33,10 @@ export default class App extends Component {
   };
 
   updateQuestions = () => {
-    api
-      .get("questions")
-      .then(({ questions }) => this.setState({ globalFeed: questions }));
+    api.get("questions").then((data) => {
+      console.log(data);
+      this.setState({ globalFeed: data.questions });
+    });
   };
 
   updateUserObj = (user) => {
