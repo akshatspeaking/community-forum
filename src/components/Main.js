@@ -1,32 +1,35 @@
-import React, { Component } from 'react'
-import Postcard from './Postcard';
-import Sidebar from './Sidebar';
-
-// import Reply from './Reply';
+import React, { Component } from "react";
+import Postcard from "./Postcard";
+import Sidebar from "./Sidebar";
 
 export default class Main extends Component {
-  constructor() {
-    super();
-    this.state = {
-      global: [1, 3, 4, 6],
-      following: [],
-    }
+  state = {
+    following: [],
+    token: "",
+  };
 
-
+  componentDidMount() {
+    this.setState({ token: localStorage.getItem("token") });
   }
+
   render() {
     return (
       <div>
-        <div className="flexrow main">
-          <div className="flexcol list">
-            <button>
-              View Latest
-            </button>
-            {this.state.global.map(post => (<Postcard />))}
+        <div className="flex justify-around">
+          <div className="">
+            <div className="list mx-auto max-w-lg">
+              {this.props.questions.map((post) => (
+                <Postcard key={post._id} {...post} />
+              ))}
+            </div>
           </div>
-          <Sidebar className="sidebar" />
+          <Sidebar
+            className="sidebar max-w-sm"
+            token={this.props.token}
+            updateQuestions={this.props.updateQuestions}
+          />
         </div>
       </div>
-    )
+    );
   }
 }
