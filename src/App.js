@@ -16,16 +16,15 @@ export default class App extends Component {
   };
 
   componentDidMount() {
+    this.updateQuestions();
     this.setState({
-      token: localStorage.getItem("token"),
+      token: localStorage.getItem("token") || "",
     });
     api.get("users/verify").then((data) => {
       this.setState({ userObj: data.user || {} }, () => {
         console.log(this.state.userObj);
       });
     });
-
-    this.updateQuestions();
   }
 
   updateToken = (token) => {
