@@ -20,7 +20,7 @@ export default class App extends Component {
       token: localStorage.getItem("token"),
     });
     api.get("users/verify").then((data) => {
-      this.setState({ userObj: data.user }, () => {
+      this.setState({ userObj: data.user || {} }, () => {
         console.log(this.state.userObj);
       });
     });
